@@ -1,3 +1,5 @@
+✨ https://week11-project.vercel.app/ ✨
+
 ## Upvote
 
 Upvote is a Reddit-esque web application that allows users to create posts, upvote and downvote posts, and comment on posts in a multi-threaded, nested list.
@@ -20,15 +22,25 @@ The project is a work in progress and is not yet complete.
 ## Setup instructions
 
 1. Fork the repository (check "copy the main branch only") and clone your fork to your local machine
-2. Run `npm install`
-3. Create a `.env.local` file in the root directory and add the following environment variables:
-   - `DATABASE_URL` - the URL of your Postgres database (eg. the Supabase connection string)
-   - `AUTH_SECRET` - the Next Auth secret string (this can be anything at all like a password, but keep it secret!)
-   - `AUTH_GITHUB_ID` - the GitHub OAuth client ID (create yours in [Github developer settings](https://github.com/settings/developers)
-   - `AUTH_GITHUB_SECRET` - the GitHub OAuth client secret (create this in [Github developer settings](https://github.com/settings/developers))
-4. Create the database schema by running the SQL commands in `schema.sql` in your database (eg. by running the commands in Supabase Query Editor)
-5. Run `npm run dev` to start the development server
-6. Open [http://localhost:3000](http://localhost:3000) with your browser to see the site
+2. In your forked repository, copy the SSH key and clone the repo into your terminal (git clone SSHKey)
+3. cd projectname, code .
+4. Run `npm i` in the terminal
+5. Create a `.env.local` file in the root directory, and copy and paste the template from the ".env.example" file
+6. Set the AUTH_SECRET: to be anything, using only letters and numbers
+7. In Github, go to your account, then settings, the developer settings, then new github app.
+8. Name the app
+9. Temporarily set the Homapage URL to http://localhost:3000 and the callback URL to http://localhost:3000/api/auth/callback/github
+10. Enable request user authorization and disable webhook
+11. Click create github app
+12. Copy the client id and paste it in your ".env.local" file in AUTH_GITHUB_ID:
+13. Generate a client secret and paste it in your ".env.local" file in AUTH_GITHUB_SECRET:
+14. Go to supabase.com, and in your account go to connect, then connection string, url, and copy and paste this URL and paste it in your ".env.local" file in DATABASE_URL:
+15. Swap [password] for your supabase database password (to reset this, go to settings, then database, then reset database password)
+16. In supabase, open the query editor and paste the contents of schema.sql (remove the -- from line 79)
+17. Run `npm run dev` to start the development server
+18. Open [http://localhost:3000](http://localhost:3000) with your browser to see the site
+19. On Vercel.com, click new project, then link your github repo, and paste the environmental keys before pressing deploy
+20. In github, change the Homepage URL to your new vercel link, and the callback URL to your new vercel link + /api/auth/callback/github
 
 ## Potential future features
 
@@ -46,3 +58,39 @@ The project is a work in progress and is not yet complete.
 - [ ] User following
 - [ ] User feed (posts from users you follow)
 - [ ] User flair
+
+🎯 Please mention the requirements you met and which goals you achieved for this assignment.
+
+Requirements
+
+- Deploy to Vercel
+
+Stretch Goals
+
+- Fix page titles on post pages to match the post title - I used generateMetaData to make the post title appear on the tab as the page title e.g Didit | Post Title
+
+🎯 Were there any requirements or goals that you were not quite able to achieve?
+
+I wanted to try to fix the upvote error but ran out of time
+
+🎯 If so, could you please tell us what was it that you found difficult about these tasks?
+
+I found the stretch goal of making the page title match the post title difficult, but I may have been testing it on my vercel deploy rather than my local
+
+✨ What went really well and what could have gone better?
+
+Following the steps in order really helped make things go well, and I think my stretch goal could have gone better as I just copy and pasted my query from the edf, but I'm not sure if it can be a more simple query
+
+✨ Detailing useful external sources that helped you complete the assignment (e.g Youtube tutorials).
+
+Metadata - https://techeducators.moodlecloud.com/mod/lesson/view.php?id=1193
+
+✨ Describing errors or bugs you encountered while completing your assignment.
+
+Unhandled Runtime Error
+Error: getaddrinfo ENOTFOUND mypostgresconnectionstring
+I had this error after running npm run dev because I hadn't saved the .env.local file
+
+✨ Requesting feedback about a specific part of your submission.
+
+Could I get some feedback on the generateMetaData in post->page.jsx
